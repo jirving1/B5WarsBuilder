@@ -21,6 +21,9 @@ class Fighter:
     self.in_service = in_service
     self.cost = cost
 
+    def __repr__(self):
+      return f"{self.faction} {self.name} | In service: {self.in_service} | Cost: {self.cost}"
+
 
 class Structure(Ship):
   def __init__(self):

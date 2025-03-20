@@ -48,9 +48,28 @@ class StartScreen(Window):
         faction = self.selected_faction_var.get()  # Changed from selected_faction.get() to option_var.get()
         value = self.fleet_value.get()
         new_fleet = rules.Fleet(fleet_name, faction, value)
+        FleetScreen(new_fleet)
         # You can add code here to do something with new_fleet, like:
         # print(f"Created fleet: {fleet_name}, {faction}, {value}")
 
+class FleetScreen(Window):
+    def __init__(self, fleet_object):
+        super().__init__()
+        self.fleet = fleet_object
+        
+        self.label = tk.Label(self.root, text=f"{self.fleet.name} | {self.fleet.faction}")
+        self.label.pack(padx=10, pady=5)
+
+        list_items = tk.Variable()
+        unit_list = tk.Listbox(self.root,) #make a loop to check for faction, then fetch the locations for that faction's units
+    #three listboxes for ships, fighters and structures
+        
+
+        
+        
+       
+
+        
 if __name__ == "__main__":
     app = StartScreen()
     app.root.mainloop()

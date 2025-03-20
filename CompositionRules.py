@@ -4,16 +4,15 @@ class Fleet:
     def __init__(self, name, faction, point_limit):
         self.name = name
         self.faction = faction
-        self.point_limit = point_limit
+        self.point_limit = int(point_limit)
         self.point_total = 0
         self.units = []
         self.fighter_limit = 0
         self.fighter_count = 0
-        self.limited_limit = point_limit * .33
-        self.restricted_limit = point_limit * .1
+        self.limited_limit = (self.point_limit * 33) // 100
+        self.restricted_limit = self.point_limit // 10
         self.limited_total = 0
         self.restricted_total = 0
-       
 
     def add_unit(self, unit):
         if unit != Fighter:
