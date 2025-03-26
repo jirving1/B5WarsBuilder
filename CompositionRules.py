@@ -41,6 +41,9 @@ class Fleet:
             self.restricted_total -= unit.cost
         self.validate_list()
 
+
+    
+
     
     def validate_list(self):
         if self.point_total > self.point_limit:

@@ -1,5 +1,8 @@
 import tkinter as tk
 import CompositionRules as rules
+from Data import *
+
+
 
 LARGEFONT = ("Verdana", 35)
 
@@ -56,13 +59,50 @@ class FleetScreen(Window):
     def __init__(self, fleet_object):
         super().__init__()
         self.fleet = fleet_object
+        self.ships_var = tk.StringVar(self.root)
+        self.fighters_var = tk.StringVar(self.root)
+        
+
+
         
         self.label = tk.Label(self.root, text=f"{self.fleet.name} | {self.fleet.faction}")
         self.label.pack(padx=10, pady=5)
+        
+        self.ships_label = tk.Label(self.root, text="Starships")
+        self.ships_label.pack(padx=10, pady=5)
+        self.ships_list = tk.Listbox(self.root, listvariable=self.ships_var, width=150)
+        self.ships_list.pack(padx=10, pady=5)
 
-        list_items = tk.Variable()
-        unit_list = tk.Listbox(self.root,) #make a loop to check for faction, then fetch the locations for that faction's units
+        self.fighters_label = tk.Label(self.root, text="Fighters")
+        self.fighters_label.pack(padx=10, pady=5)
+        self.fighters_list = tk.Listbox(self.root, listvariable=self.fighters_var,width=150)
+        self.fighters_list.pack(padx=10, pady=5)
+        
+        self.populate_ships_listbox()
+        self.populate_fighters_listbox()
+        
+    def populate_ships_listbox(self):
+        ships_list = []
+        for ship in starship_units:
+            if ship.faction == self.fleet.faction:
+                ships_list.append(str(ship))
+        self.ships_var.set(value=ships_list)           
+        
+    def populate_fighters_listbox(self):
+        fighters_list = []
+        for fighter in fighter_units:
+            if fighter.faction == self.fleet.faction:
+                fighters_list.append(fighter.__repr__())
+        self.fighters_var.set(value=fighters_list)
+        
+
+        
+        
+        
+        
+    #make a loop to check for faction, then fetch the locations for that faction's units
     #three listboxes for ships, fighters and structures
+
         
 
         
